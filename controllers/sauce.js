@@ -1,6 +1,8 @@
-const Sauce = require("../models/sauce")
+// import
 const fs = require("fs")
+const Sauce = require("../models/sauce")
 
+// middleware pour créer une sauce
 exports.createSauce = (req, res, next) => {
 	const sauceObject = JSON.parse(req.body.sauce)
 	delete sauceObject._id
@@ -23,6 +25,7 @@ exports.createSauce = (req, res, next) => {
 		})
 }
 
+// middleware pour afficher toutes les sauces
 exports.getAllSauces = (req, res, next) => {
 	Sauce.find()
 		.then((sauces) => {
@@ -35,13 +38,16 @@ exports.getAllSauces = (req, res, next) => {
 		})
 }
 
+// middleware pour supprimer une sauce
 exports.deleteSauce = (req, res, next) => {
 	Sauce.findOne({ _id: req.params.id })
 		.then((sauce) => {
+			// vérifie que l'utilisateur qui supprime la sauce soit celui qui l'a créé
 			if (sauce.userId !== req.auth.userId) {
-				res.status(401).json({ message: "Not authorized" })
+				res.status(401).json({ message: "Non autorisé" })
 			} else {
 				const filename = sauce.imageUrl.split("/images/")[1]
+				// supprime l'image et exécute la fonction de suppression
 				fs.unlink(`images/${filename}`, () => {
 					Sauce.deleteOne({ _id: req.params.id })
 						.then(() => {
@@ -56,6 +62,7 @@ exports.deleteSauce = (req, res, next) => {
 		})
 }
 
+// middleware pour afficher une sauce
 exports.getOneSauce = (req, res, next) => {
 	Sauce.findOne({ _id: req.params.id })
 		.then((sauce) => {
@@ -68,7 +75,9 @@ exports.getOneSauce = (req, res, next) => {
 		})
 }
 
+// middleware pour modifier une sauce
 exports.modifySauce = (req, res, next) => {
+	// vérifie si la requête contient un fichier
 	const sauceObject = req.file
 		? {
 				...JSON.parse(req.body.sauce),
@@ -81,15 +90,20 @@ exports.modifySauce = (req, res, next) => {
 	delete sauceObject._userId
 	Sauce.findOne({ _id: req.params.id })
 		.then((sauce) => {
+			// vérifie que l'utilisateur qui supprime la sauce soit celui qui l'a créé
 			if (sauce.userId !== req.auth.userId) {
-				res.status(401).json({ message: "Not authorized" })
+				res.status(401).json({ message: "Non autorisé" })
 			} else {
-				Sauce.updateOne(
-					{ _id: req.params.id },
-					{ ...sauceObject, _id: req.params.id }
-				)
-					.then(() => res.status(200).json({ message: "Sauce modifiée !" }))
-					.catch((error) => res.status(401).json({ error }))
+				const filename = sauce.imageUrl.split("/images/")[1]
+				// supprime l'image et exécute la fonction de mise à jour
+				fs.unlink(`images/${filename}`, () => {
+					Sauce.updateOne(
+						{ _id: req.params.id },
+						{ ...sauceObject, _id: req.params.id }
+					)
+						.then(() => res.status(200).json({ message: "Sauce modifiée !" }))
+						.catch((error) => res.status(401).json({ error }))
+				})
 			}
 		})
 		.catch((error) => {
@@ -97,6 +111,7 @@ exports.modifySauce = (req, res, next) => {
 		})
 }
 
+// middleware pour liker/disliker une sauce
 exports.likeSauce = (req, res, next) => {
 	Sauce.findOne({ _id: req.params.id })
 		.then((sauce) => {
@@ -134,6 +149,7 @@ exports.likeSauce = (req, res, next) => {
 					}
 					break
 				case 0:
+					// retirer le like ou le dislike
 					if (sauce.usersLiked.includes(req.body.userId)) {
 						Sauce.updateOne(
 							{ _id: req.params.id },

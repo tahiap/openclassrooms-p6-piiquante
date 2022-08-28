@@ -1,3 +1,4 @@
+// import
 const express = require("express")
 const mongoose = require("mongoose")
 const path = require("path")
@@ -8,6 +9,7 @@ require("dotenv").config()
 const userRoutes = require("./routes/user")
 const saucesRoutes = require("./routes/sauce")
 
+// connexion à mongoDB
 mongoose
 	.connect(
 		"mongodb+srv://" +
@@ -20,9 +22,16 @@ mongoose
 	.then(() => console.log("Connexion à MongoDB réussie !"))
 	.catch(() => console.log("Connexion à MongoDB échouée !"))
 
+// créé une application express
 const app = express()
+
+// parse les requêtes qui ont comme Content-Type : application/json et met à disposition le contenu dans le body de la requête
+app.use(express.json())
+
+// helmet définit des en-têtes HTTP liés à la sécurité
 app.use(helmet())
 
+// ajout des headers à l'objet response
 app.use((req, res, next) => {
 	res.setHeader("Access-Control-Allow-Origin", "*")
 	res.setHeader(
@@ -37,8 +46,7 @@ app.use((req, res, next) => {
 	next()
 })
 
-app.use(express.json())
-
+// attribue un middleware à une route spécifique de l'application
 app.use("/api/auth", userRoutes)
 app.use("/api/sauces", saucesRoutes)
 app.use("/images", express.static(path.join(__dirname, "images")))

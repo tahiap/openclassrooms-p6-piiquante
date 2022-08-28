@@ -1,5 +1,7 @@
+// import
 const mongoose = require("mongoose")
 
+// créé un schéma de données pour la base de données MongoDB
 const sauceSchema = mongoose.Schema({
 	userId: { type: String, required: true },
 	name: { type: String, required: true },
@@ -14,4 +16,5 @@ const sauceSchema = mongoose.Schema({
 	usersDisliked: { type: Array },
 })
 
+// export du schéma en tant que modèle Mongoose, le rendant disponible pour le reste de application
 module.exports = mongoose.model("Sauce", sauceSchema)

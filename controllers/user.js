@@ -1,8 +1,10 @@
+// import
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 const User = require("../models/user")
 
+// middleware d'inscription
 exports.signup = (req, res, next) => {
 	bcrypt
 		.hash(req.body.password, 10)
@@ -19,6 +21,7 @@ exports.signup = (req, res, next) => {
 		.catch((error) => res.status(500).json({ error }))
 }
 
+// middleware de connexion
 exports.login = (req, res, next) => {
 	User.findOne({ email: req.body.email })
 		.then((user) => {

@@ -6,19 +6,32 @@ const User = require("../models/user")
 
 // middleware d'inscription
 exports.signup = (req, res, next) => {
-	bcrypt
-		.hash(req.body.password, 10)
-		.then((hash) => {
-			const user = new User({
-				email: req.body.email,
-				password: hash,
+	const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
+	const emailRegex =
+		/[A-Za-z0-9](([_.-]?[A-Za-z0-9]+)*)@([A-Za-z0-9]+)(([_.-]?[A-Za-z0-9]+)*).([A-Za-z]{2,})/
+
+	if (
+		passwordRegex.test(req.body.password) &&
+		emailRegex.test(req.body.email)
+	) {
+		bcrypt
+			.hash(req.body.password, 10)
+			.then((hash) => {
+				const user = new User({
+					email: req.body.email,
+					password: hash,
+				})
+				user
+					.save()
+					.then(() => res.status(201).json({ message: "Utilisateur créé !" }))
+					.catch((error) => res.status(400).json({ error }))
 			})
-			user
-				.save()
-				.then(() => res.status(201).json({ message: "Utilisateur créé !" }))
-				.catch((error) => res.status(400).json({ error }))
-		})
-		.catch((error) => res.status(500).json({ error }))
+			.catch((error) => res.status(500).json({ error }))
+	} else {
+		return res
+			.status(403)
+			.json({ message: "L'email et/ou le mot passe ne sont pas valides." })
+	}
 }
 
 // middleware de connexion

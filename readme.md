@@ -10,14 +10,14 @@ https://github.com/OpenClassrooms-Student-Center/Web-Developer-P6.git
 
 Afin de récupérer et rendre le frontend opérationnel, plusieurs actions sont nécessaires.
 
-- Cloner le repository contenant le front :
+- Cloner le repository contenant le front :  
   $ git clone https://github.com/OpenClassrooms-Student-Center/Web-Developer-P6.git
 
-- Installer les dépendances :
-  $ cd Web-Developer-P6
+- Installer les dépendances :  
+  $ cd Web-Developer-P6  
   $ npm install
 
-- Lancer ng serve :
+- Lancer ng serve :  
   $ npm run start
 
 # Backend
@@ -28,12 +28,12 @@ Pour obtenir un backend opérationnel, plusieurs actions sont nécessaires dans 
 
 - Ce projet utilise le package dotenv qui permet de remplacer les chaînes de caractères sensibles. Il faut créer un dossier nommé ".env" et définissez les 3 variables d'environnement :
 
-USER="votre_nom_d'utilisateur_MongoDB"
-PASSWORD="votre_mot_de_passe_Mongo_DB"
+USER="votre_nom_d'utilisateur_MongoDB"  
+PASSWORD="votre_mot_de_passe_Mongo_DB"  
 TOKEN_SECRET_KEY="votre_clé_secrète_pour_chiffrer_les_tokens"
 
-- Installer les dépendances :
+- Installer les dépendances :  
   $ npm install
 
-- Lancer le serveur Nodemon :
+- Lancer le serveur Nodemon :  
   $ nodemon server

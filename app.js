@@ -47,6 +47,7 @@ app.use((req, res, next) => {
 })
 
 // attribue un middleware à une route spécifique de l'application
+// les chemins d'URL dans le dossier de routes incluront automatiquement le préfixe
 app.use("/api/auth", userRoutes)
 app.use("/api/sauces", saucesRoutes)
 app.use("/images", express.static(path.join(__dirname, "images")))

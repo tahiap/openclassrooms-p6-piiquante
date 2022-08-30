@@ -6,9 +6,9 @@ module.exports = (req, res, next) => {
 	try {
 		// extraction du token du header Authorization de la requête entrante
 		const token = req.headers.authorization.split(" ")[1]
-		// décodage du token
+		// décodage du token, s'il n'est pas valide une erreur est générée
 		const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET_KEY)
-		// extraction du userId du token et ajout à l'objet request
+		// extraction du userId du token et ajout à l'objet request pour qu'il soit exploité
 		const userId = decodedToken.userId
 		req.auth = {
 			userId: userId,

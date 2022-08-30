@@ -1,8 +1,8 @@
-## Guide de déploiement
+# Guide de déploiement
 
 Ce dossier contient uniquement le backend de l'application, réalisé dans le cadre du projet 6 Piiquante, de la formation de développeur web dispensée par Openclassrooms.
 
-# Frontend
+## Frontend
 
 La partie front de ce projet a été générée avec Angular CLI version 13.2.4.  
 Il se trouve à l'adresse suivante :
@@ -20,7 +20,7 @@ Afin de récupérer et rendre le frontend opérationnel, plusieurs actions sont 
 - Lancer ng serve :  
   $ npm run start
 
-# Backend
+## Backend
 
 Pour obtenir un backend opérationnel, plusieurs actions sont nécessaires dans le dossier backend.
 

@@ -4,7 +4,7 @@ Ce dossier contient uniquement le backend de l'application, réalisé dans le ca
 
 # Frontend
 
-La partie front de ce projet a été générée avec Angular CLI version 13.2.4
+La partie front de ce projet a été générée avec Angular CLI version 13.2.4.  
 Il se trouve à l'adresse suivante :
 https://github.com/OpenClassrooms-Student-Center/Web-Developer-P6.git
 
@@ -26,7 +26,8 @@ Pour obtenir un backend opérationnel, plusieurs actions sont nécessaires dans 
 
 - Créer un dossier nommé "images". Celui-ci contiendra les images uploadées lors de la création et modification des sauces.
 
-- Ce projet utilise le package dotenv qui permet de remplacer les chaînes de caractères sensibles. Il faut créer un dossier nommé ".env" et définissez les 3 variables d'environnement :
+- Ce projet utilise le package dotenv qui permet de remplacer les chaînes de caractères sensibles. Il faut créer un dossier nommé ".env" et définissez les 3 variables  
+  d'environnement :
 
 USER="votre_nom_d'utilisateur_MongoDB"  
 PASSWORD="votre_mot_de_passe_Mongo_DB"  

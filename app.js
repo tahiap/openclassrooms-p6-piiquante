@@ -33,11 +33,14 @@ app.use(helmet())
 
 // ajout des headers à l'objet response
 app.use((req, res, next) => {
+	// accés à l'API depuis n'importe quelle origine
 	res.setHeader("Access-Control-Allow-Origin", "*")
+	// ajout des headers mentionnés aux requêtes envoyées vers l'API
 	res.setHeader(
 		"Access-Control-Allow-Headers",
 		"Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
 	)
+	// envoie des requêtes avec les méthodes mentionnéess
 	res.setHeader(
 		"Access-Control-Allow-Methods",
 		"GET, POST, PUT, DELETE, PATCH, OPTIONS"

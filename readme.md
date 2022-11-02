@@ -24,6 +24,8 @@ Afin de récupérer et rendre le frontend opérationnel, plusieurs actions sont 
 - Lancer ng serve :  
   $ npm run start
 
+- Se rendre sur l'URL : http://localhost:4200/
+
 ## Backend
 
 Pour obtenir un backend opérationnel, plusieurs actions sont nécessaires dans le dossier backend.

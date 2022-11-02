@@ -1,6 +1,10 @@
-# Guide de déploiement
+# Informations générales
 
-Ce dossier contient uniquement le backend de l'application, réalisé dans le cadre du projet 6 Piiquante, de la formation de développeur web dispensée par Openclassrooms.
+Ce dossier contient la partie backend de l'application, réalisé dans le cadre du projet 6 Piiquante, de la formation de développeur web dispensée par Openclassrooms.
+
+Il a pour objectif le développement de la partie backend avec Node.js, la mise en place d'une API sécurisée et des opérations CRUD pour une application d'avis gastronomiques.
+
+# Guide de déploiement
 
 ## Frontend
 
@@ -24,13 +28,17 @@ Afin de récupérer et rendre le frontend opérationnel, plusieurs actions sont 
 
 Pour obtenir un backend opérationnel, plusieurs actions sont nécessaires dans le dossier backend.
 
+- S'assurer que Node.js soit installé sur la machine.
+
+- Cloner le repository :  
+  $ git clone https://github.com/tahiap/openclassrooms-piiquante.git
+
 - Créer un dossier nommé "images". Celui-ci contiendra les images uploadées lors de la création et modification des sauces.
 
-- Ce projet utilise le package dotenv qui permet de remplacer les chaînes de caractères sensibles. Il faut créer un dossier nommé ".env" et définir les 3 variables  
-  d'environnement :
+- Ce projet utilise le package dotenv qui permet de remplacer les chaînes de caractères sensibles. Il faut créer un dossier nommé ".env" et définir les 3 variables d'environnement :
 
 USER="votre_nom_d'utilisateur_MongoDB"  
-PASSWORD="votre_mot_de_passe_Mongo_DB"  
+PASSWORD="votre_mot_de_passe_MongoDB"  
 TOKEN_SECRET_KEY="votre_clé_secrète_pour_chiffrer_les_tokens"
 
 - Installer les dépendances :  
